@@ -160,7 +160,7 @@ Jhoan Zamora - [Github](https://github.com/jzamora5) / [Twitter](https://twitter
 David Ovalle - [Github](https://github.com/Nukemenonai) / [Twitter](https://twitter.com/disartDave)
 
 Othman SALAHI - [Github](https://github.com/othmansalahi) / [Twitter](https://twitter.com/othmansalahi)
-
+chaimae asri-ssar - [Github](https://github.com/Chaimaeasrissar)
 Second part of Airbnb: Joann Vuong
 Last part of Airbnb: Othman SALAHI
 ## License
