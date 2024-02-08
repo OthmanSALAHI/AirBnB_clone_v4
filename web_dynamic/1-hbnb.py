@@ -10,8 +10,6 @@ from flask import Flask, render_template
 from uuid import uuid4
 app = Flask(__name__)
 
-cache_id = uuid4()
-
 
 @app.teardown_appcontext
 def close_db(error):
@@ -35,6 +33,7 @@ def hbnb():
     places = storage.all(Place).values()
     places = sorted(places, key=lambda k: k.name)
 
+    cache_id = uuid4()
     return render_template('1-hbnb.html',
                            states=st_ct,
                            amenities=amenities,
