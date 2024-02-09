@@ -1,6 +1,5 @@
 window.addEventListener('load', function () {
-  // task 3
-  $.ajax('http://0.0.0.0:5001/api/v1/status').done(function (data) {
+  $.ajax('http://localhost:5001/api/v1/status').done(function (data) {
     if (data.status === 'OK') {
       $('#api_status').addClass('available');
     } else {
@@ -8,7 +7,6 @@ window.addEventListener('load', function () {
     }
   });
 
-  // task 2
   const amenityIds = {};
   $('.amenities input[type=checkbox]').click(function () {
     if ($(this).prop('checked')) {
@@ -23,13 +21,13 @@ window.addEventListener('load', function () {
     }
   });
 
-  const stateIds = {};
-  const cityIds = {};
-  // task 4
+  let stateIds = {};
+  let cityIds = {};
+
   $('.filters button').click(function () {
     $.ajax({
       type: 'POST',
-      url: 'http://0.0.0.0:5001/api/v1/places_search/',
+      url: 'http://localhost:5001/api/v1/places_search/',
       contentType: 'application/json',
       data: JSON.stringify({
         amenities: Object.keys(amenityIds),
@@ -84,17 +82,17 @@ window.addEventListener('load', function () {
     });
   });
 
-  // task 6
   $('.stateCheckBox').click(function () {
     if ($(this).prop('checked')) {
       stateIds[$(this).attr('data-id')] = $(this).attr('data-name');
     } else if (!$(this).prop('checked')) {
       delete stateIds[$(this).attr('data-id')];
     }
-    if (Object.keys(stateIds).length === 0 && Object.keys(cityIds).length === 0) {
+    if (Object.keys(stateIds).length == 0 && Object.keys(cityIds).length == 0) {
       $('.locations h4').html('&nbsp;');
     } else {
-      $('.locations h4').text(Object.values(stateIds).concat(Object.values(cityIds)).join(', '));
+      console.log(stateIds)
+      $('.locations h4').text(Object.values(cityIds).concat(Object.values(stateIds)).join(', '));
     }
   });
 
@@ -107,7 +105,7 @@ window.addEventListener('load', function () {
     if (Object.keys(stateIds).length === 0 && Object.keys(cityIds).length === 0) {
       $('.locations h4').html('&nbsp;');
     } else {
-      $('.locations h4').text(Object.values(cityIds).concat(Object.values(stateIds)).join(', '));
+      $('.locations h4').text(Object.values(stateIds).concat(Object.values(cityIds)).join(', '));
     }
   });
 });
