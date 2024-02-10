@@ -1,6 +1,6 @@
 window.addEventListener('load', function () {
   // task 3
-  $.ajax('http://0.0.0.0:5001/api/v1/status').done(function (data) {
+  $.ajax('http://localhost:5001/api/v1/status').done(function (data) {
     if (data.status === 'OK') {
       $('#api_status').addClass('available');
     } else {
@@ -29,7 +29,7 @@ window.addEventListener('load', function () {
   $('.filters button').click(function () {
     $.ajax({
       type: 'POST',
-      url: 'http://0.0.0.0:5001/api/v1/places_search/',
+      url: 'http://localhost:5001/api/v1/places_search/',
       contentType: 'application/json',
       data: JSON.stringify({
         amenities: Object.keys(amenityIds),
@@ -83,21 +83,21 @@ window.addEventListener('load', function () {
       }
       // Task 7: get reviews for each place (add to the places post request for loop?)
       $('.reviewSpan').click(function (event) {
-        $.ajax('http://0.0.0.0:5001/api/v1/places/' + $(this).attr('data-id') + '/reviews').done(function (data) {
+        $.ajax('http://localhost:5001/api/v1/places/' + $(this).attr('data-id') + '/reviews').done(function (data) {
           //          console.log($(this).text());
-	  $('span').addClass('hideReview');
+          $('span').addClass('hideReview');
           //	  console.log($('span'));
           //	  $('span').toggle('reviewSpan hideReview');
           if ($('.reviewSpan').text('show')) {
             for (const review of data) {
               $('.reviews ul').append(`<li>${review.text}</li>`);
             }
-	    console.log($('.reviewSpan li'));
-	    $('.hideReview').text('hide');
+            console.log($('.reviewSpan li'));
+            $('.hideReview').text('hide');
             //	    console.log($('.hideReiew'));
           } else if ($('.hideReview').text('hide')) {
             $('.reviews ul').empty();
-	    $('.reviewSpan').text('show');
+            $('.reviewSpan').text('show');
           }
         });
       });
